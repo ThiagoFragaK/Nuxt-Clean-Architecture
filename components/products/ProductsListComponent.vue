@@ -15,7 +15,24 @@
                                     <small class="text-body-secondary">Rating: {{ product.rating.rate }} ({{ product.rating.count }} reviews)</small>
                                 </p>
                                 <p class="card-text"><strong>Price: ${{ product.price }}</strong></p>
-                                <NuxtLink class="btn btn-primary" :to="`/products/${product.id}`">See details</NuxtLink>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    See details
+                                </button>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">{{ product.title }}</h1>
+                                    </div>
+                                    <div class="modal-body">
+                                        <ProductComponent :productID="product.id" />
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -28,10 +45,12 @@
 
 <script>
 import FakerService from "@/services/FakerService.js";
-import LoadingComponent from "../global/LoadingComponent.vue";
+import LoadingComponent from "@/components/global/LoadingComponent.vue";
+import ProductComponent from "@/components/products/ProductComponent.vue";
 export default {
     components: {
         LoadingComponent,
+        ProductComponent,
     },
     data: () => ({
         isLoaded: false,
@@ -54,24 +73,15 @@ export default {
             this.isLoaded = false;
             FakerService.getAllProducts()
                 .then((response) => {
-                    console.log(response);
                     this.productsList = response;
                 })
                 .finally(() => {
                     this.isLoaded = true;
                 });
-        },
-        getProductByID(productID) {
-            FakerService.getProductByID(productID)
-                .then((response) => {
-                    console.log(response);
-                    this.product = response;
-                });
-        },
+        },        
     },
     mounted() {
         this.getProducts();
-        this.getProductByID(5);
     }
 };
 </script>
