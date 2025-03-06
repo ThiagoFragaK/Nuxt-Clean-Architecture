@@ -1,75 +1,102 @@
-# Nuxt Minimal Starter
+# Clean Architecture E-Commerce Project Documentation
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## Overview
 
-## Setup
+This project is a simple e-commerce application developed to demonstrate a clean architecture in the Frontend. It consumes data from a public API called [FakerAPI](https://fakerapi.it/) to generate fictitious information about products, users, and orders. The main goal is to provide a scalable, modular, and easy-to-maintain structure.
 
-Make sure to install dependencies:
+## Technologies Used
 
-```bash
-# npm
-npm install
+- **Frontend Framework:** Nuxt3
+- **UI Library:** Bootstrap 5
+- **Routing:** Nuxt Router
+- **HTTP Requests:** Axios
+- **Code Standardization:** ESLint + Prettier
+- **Notifications:** SweetAlert 3
 
-# pnpm
-pnpm install
+## Project Structure
 
-# yarn
+```sh
+/src
+├── components       # Reusable components
+├── layouts          # Default layouts
+├── pages            # Project pages
+├── services         # API call services
+├── store            # State management
+├── utils            # Utility functions
+├── assets           # Styles, icons, and images
+└── app.vue          # Application entry point
+```
+
+## Setup and Execution
+
+### 1. Clone the repository:
+
+```sh
+git clone [<REPOSITORY_URL>](https://github.com/ThiagoFragaK/Nuxt-Clean-Architecture)
+cd nuxt-clean-architecture
+```
+
+### 2. Install dependencies:
+
+```sh
 yarn install
-
-# bun
-bun install
+# or
+npm install
 ```
 
-## Development Server
+### 3. Run the project in development mode:
 
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
+```sh
 yarn dev
-
-# bun
-bun run dev
+# or
+npm run dev
 ```
 
-## Production
+### 4. Generate a production build:
 
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
+```sh
 yarn build
-
-# bun
-bun run build
+# or
+npm run build
 ```
 
-Locally preview production build:
+## API Consumption (FakerAPI)
 
-```bash
-# npm
-npm run preview
+The API used generates fictitious data for products and users. Example request:
 
-# pnpm
-pnpm preview
+```js
+import axios from 'axios';
 
-# yarn
-yarn preview
+const API_URL = 'https://fakerapi.it/api/v1/products?_quantity=10';
 
-# bun
-bun run preview
+export const getAllProducts = async () => {
+  try {
+    const response = await axios.get(API_URL);
+    return response.data.data;
+  } catch (error) {
+    console.error('Error fetching products:', error);
+    return [];
+  }
+};
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## Key Features
+
+- Product listing
+- Product details
+- Cart addition simulation
+
+## Contribution
+
+If you want to contribute:
+
+1. Fork the repository.
+2. Create a branch for your feature (`git checkout -b my-feature`).
+3. Commit your changes (`git commit -m 'Add new feature'`).
+4. Push to the repository (`git push origin my-feature`).
+5. Open a Pull Request.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+
