@@ -66,17 +66,18 @@ The API used generates fictitious data for products and users. Example request:
 
 ```js
 import axios from 'axios';
-
-const API_URL = 'https://fakerapi.it/api/v1/products?_quantity=10';
+const url = "https://fakestoreapi.com";
 
 export const getAllProducts = async () => {
-  try {
-    const response = await axios.get(API_URL);
-    return response.data.data;
-  } catch (error) {
-    console.error('Error fetching products:', error);
-    return [];
-  }
+  return axios.get(`${url}/products?limit=15`)
+      .then((response) => {
+          return response.data;
+      })
+      .catch(() => {
+          return {
+              error: "There's an error fetching the products list."
+          }
+      });
 };
 ```
 
