@@ -1,7 +1,11 @@
 <template>
     <div v-if="isLoaded" class="container">
         <div class="row row-cols-1 row-cols-md-2 g-4">
-            <div class="col" v-for="product in productsList" :key="product.id">
+            <div 
+                class="col" 
+                v-for="product in productsList" 
+                :key="product.id"
+            >
                 <div class="card fixed-card">
                     <div class="row g-0">
                         <div class="col-md-4 d-flex align-items-center justify-content-center">
@@ -15,24 +19,13 @@
                                     <small class="text-body-secondary">Rating: {{ product.rating.rate }} ({{ product.rating.count }} reviews)</small>
                                 </p>
                                 <p class="card-text"><strong>Price: ${{ product.price }}</strong></p>
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <button 
+                                    type="button" 
+                                    class="btn btn-primary"
+                                    @click="openProductModal(product.id)"
+                                >
                                     See details
                                 </button>
-                            </div>
-                        </div>
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">{{ product.title }}</h1>
-                                    </div>
-                                    <div class="modal-body">
-                                        <ProductComponent :productID="product.id" />
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -41,16 +34,18 @@
         </div>
     </div>
     <LoadingComponent v-else />
+    <ProductModal ref="ProductModal" />
 </template>
 
 <script>
 import FakerService from "@/services/FakerService.js";
 import LoadingComponent from "@/components/global/LoadingComponent.vue";
-import ProductComponent from "@/components/products/ProductComponent.vue";
+import ProductModal from "@/components/products/ProductModal.vue";
+
 export default {
     components: {
         LoadingComponent,
-        ProductComponent,
+        ProductModal,
     },
     data: () => ({
         isLoaded: false,
@@ -78,7 +73,13 @@ export default {
                 .finally(() => {
                     this.isLoaded = true;
                 });
-        },        
+        },
+        openProductModal(productId) {
+            this.$refs.ProductModal.open(productId);
+        },
+        showProduct() {
+            this.isProductLoaded = true;
+        }
     },
     mounted() {
         this.getProducts();
