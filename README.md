@@ -32,7 +32,7 @@ This project is a simple e-commerce application developed to demonstrate a clean
 ### 1. Clone the repository:
 
 ```sh
-git clone [<REPOSITORY_URL>](https://github.com/ThiagoFragaK/Nuxt-Clean-Architecture)
+git clone https://github.com/ThiagoFragaK/Nuxt-Clean-Architecture
 cd nuxt-clean-architecture
 ```
 
