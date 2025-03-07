@@ -68,6 +68,13 @@ export default {
             this.isLoaded = false;
             FakerService.getAllProducts()
                 .then((response) => {
+                    if(response.error !== undefined) {
+                        return this.$notify({
+                            title: "Products",
+                            text: response.error,
+                            icon: "error"
+                        });
+                    }
                     this.productsList = response;
                 })
                 .finally(() => {
