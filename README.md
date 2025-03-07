@@ -97,7 +97,3 @@ If you want to contribute:
 4. Push to the repository (`git push origin my-feature`).
 5. Open a Pull Request.
 
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
-
