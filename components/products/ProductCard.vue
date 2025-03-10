@@ -12,20 +12,26 @@
                         <small class="text-body-secondary">Rating: {{ product.rating.rate }} ({{ product.rating.count }} reviews)</small>
                     </p>
                     <p class="card-text"><strong>Price: ${{ product.price }}</strong></p>
-                    <button 
-                        type="button" 
-                        class="btn btn-primary"
-                        @click="$emit('show-details', product.id)"
-                    >
-                        See details
-                    </button>
-                    <button 
-                        type="button" 
-                        class="btn btn-primary"
-                        @click="console.log('Assim')"
-                    >
-                        <HeroIcon icon="ShoppingCartIcon" class="w-2 h-2"/>
-                    </button>
+                    <div class="d-flex gap-2">
+                        <div class="col-9">
+                            <button 
+                                type="button" 
+                                class="btn btn-primary w-100"
+                                @click="$emit('show-details', product.id)"
+                            >
+                                See details
+                            </button>
+                        </div>
+                        <div class="col-3">
+                            <button 
+                                type="button" 
+                                class="btn btn-primary cart-btn"
+                                @click="addItemToCart(product.id)"
+                            >
+                                <HeroIcon icon="ShoppingCartIcon" class="icon-size"/>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -48,6 +54,27 @@
         },
         components: {
             HeroIcon,
+        },
+        methods: {
+            addItemToCart(productId) {
+
+            },
         }
     }
 </script>
+
+<style>
+    .cart-btn {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+    }
+
+    .icon-size {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+</style>
