@@ -5,7 +5,8 @@ export default defineNuxtConfig({
     enabled: true
   },
   plugins: [
-    '~/plugins/sweetalert.client.js'
+    '~/plugins/sweetalert.client.js',
+    '~/plugins/heroicons.global.js'
   ], 
   css: [
     '~/assets/styles.css',
