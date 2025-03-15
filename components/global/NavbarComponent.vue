@@ -6,6 +6,9 @@
                     <li class="nav-item">
                         <NuxtLink class="nav-link text-white" to="/">Home</NuxtLink>
                     </li>
+                    <li class="nav-item">
+                        <NuxtLink class="nav-link text-white" to="/shopping-cart">Shopping Cart</NuxtLink>
+                    </li>
                 </ul>
             </div>
         </div>
