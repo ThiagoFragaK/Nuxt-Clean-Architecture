@@ -26,9 +26,10 @@
                             <button 
                                 type="button" 
                                 class="btn btn-primary cart-btn"
-                                @click="addItemToCart(product.id)"
+                                @click="handleItemInCart(product.id)"
                             >
-                                <HeroIcon icon="ShoppingCartIcon" class="icon-size"/>
+                                <HeroIcon v-if="isProductInCart(product.id)" icon="XMarkIcon" class="icon-size"/>
+                                <HeroIcon v-else icon="ShoppingCartIcon" class="icon-size"/>
                             </button>
                         </div>
                     </div>
@@ -39,6 +40,7 @@
 </template>
 
 <script>
+    import { useShoppingCartStore } from "@/stores/shoppingCart";
     import HeroIcon from "@/components/global/HeroIcon.vue";
     export default {
         props: {
@@ -55,9 +57,34 @@
         components: {
             HeroIcon,
         },
+        data: () => ({
+            shoppingCart: useShoppingCartStore(),
+        }),
         methods: {
-            addItemToCart(productId) {
+            handleItemInCart(productId) {
+                if(this.isProductInCart(productId)) {
+                    this.$notify({
+                        title: "Shopping cart",
+                        text: "Item removed from your cart.",
+                        icon: "success"
+                    });
+                    return this.shoppingCart.removeItemFromCart(productId);
+                }
 
+                this.$notify({
+                    title: "Shopping cart",
+                    text: "Item added from your cart.",
+                    icon: "success"
+                });
+                this.shoppingCart.addItemToCart(productId);
+            },
+            isProductInCart(productId) {
+                return this.cartItens.find(id => id === productId);
+            },
+        },
+        computed: {
+            cartItens() {
+                return this.shoppingCart.totalItens;
             },
         }
     }
