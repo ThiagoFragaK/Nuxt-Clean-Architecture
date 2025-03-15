@@ -1,11 +1,11 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { 
     enabled: true
   },
   plugins: [
-    '~/plugins/sweetalert.client.js'
+    '~/plugins/sweetalert.client.js',
+    '~/plugins/heroicons.global.js',
   ], 
   css: [
     '~/assets/styles.css',

@@ -6,30 +6,10 @@
                 v-for="product in productsList" 
                 :key="product.id"
             >
-                <div class="card fixed-card">
-                    <div class="row g-0">
-                        <div class="col-md-4 d-flex align-items-center justify-content-center">
-                            <img :src="product.image" class="img-fixed rounded-start" :alt="product.title">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ product.title }}</h5>
-                                <p class="card-text text-truncate">{{ product.description }}</p>
-                                <p class="card-text">
-                                    <small class="text-body-secondary">Rating: {{ product.rating.rate }} ({{ product.rating.count }} reviews)</small>
-                                </p>
-                                <p class="card-text"><strong>Price: ${{ product.price }}</strong></p>
-                                <button 
-                                    type="button" 
-                                    class="btn btn-primary"
-                                    @click="openProductModal(product.id)"
-                                >
-                                    See details
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <ProductCard 
+                    :product="product" 
+                    @show-details="openProductModal" 
+                />
             </div>
         </div>
     </div>
@@ -41,11 +21,13 @@
 import FakerService from "@/services/FakerService.js";
 import LoadingComponent from "@/components/global/LoadingComponent.vue";
 import ProductModal from "@/components/products/ProductModal.vue";
+import ProductCard from "@/components/products/ProductCard.vue";
 
 export default {
     components: {
         LoadingComponent,
         ProductModal,
+        ProductCard,
     },
     data: () => ({
         isLoaded: false,
