@@ -6,6 +6,7 @@ export const useShoppingCartStore = defineStore('shoppingCart', {
     }),
     getters: {
         shoppingCartCount: (state) => state.totalItens.length,
+        getCartItens: (state) => state.totalItens,
     },
     actions: {
         addItemToCart(productId) {
