@@ -4,7 +4,7 @@ https://nuxt-clean-architecture.vercel.app/
 
 ## Overview
 
-This project is a simple e-commerce application developed to demonstrate a clean architecture in the Frontend. It consumes data from a public API called [FakerAPI](https://fakerapi.it/) to generate fictitious information about products, users, and orders. The main goal is to provide a scalable, modular, and easy-to-maintain structure.
+This project is a simple e-commerce application developed to demonstrate a clean architecture in the Frontend. It consumes data from a public API called [FakerAPI](https://fakerapi.it/) to generate fictitious information about products and orders. The main goal is to provide a scalable, modular, and easy-to-maintain structure.
 
 ## Technologies Used
 
