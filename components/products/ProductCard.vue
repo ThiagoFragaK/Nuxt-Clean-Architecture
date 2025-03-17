@@ -48,11 +48,6 @@
                 type: Object,
                 required: true,
             },
-            showCartBtn: {
-                type: Boolean,
-                required: false,
-                default: false,
-            }
         },
         components: {
             HeroIcon,
@@ -68,7 +63,8 @@
                         text: "Item removed from your cart.",
                         icon: "success"
                     });
-                    return this.shoppingCart.removeItemFromCart(productId);
+                    this.shoppingCart.removeItemFromCart(productId);
+                    return this.$emit("remove-item");
                 }
 
                 this.$notify({
