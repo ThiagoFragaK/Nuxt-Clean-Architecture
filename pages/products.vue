@@ -10,14 +10,5 @@
         components: {
             ProductComponent,
         },
-        props: {
-            product: {
-                type: Object,
-                required: true,
-            }
-        },
-        mounted() {
-            console.log("Producsts")
-        }
     }
 </script>

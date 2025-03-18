@@ -5,7 +5,7 @@
 </template>
 
 <script>
-    import ShoppingCartComponent from '~/components/products/ShoppingCartComponent.vue';
+    import ShoppingCartComponent from '~/components/shopping-cart/ShoppingCartComponent.vue';
     export default {
         components: {
             ShoppingCartComponent,
